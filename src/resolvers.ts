@@ -1,10 +1,14 @@
-import { Job } from "./models/Jobs.js";
+import { Job, IJob } from "./models/Jobs.js";
 
 export const resolvers = {
   Query: {
     jobs: async () => {
-      return await Job.find().lean(); 
+      return await Job.find().lean();
     },
+  },
+
+  Job: {
+    date: (job: IJob) => job.createdAt.slice(0, 'yyyy-mm-dd'.length)
   },
 
   Mutation: {
